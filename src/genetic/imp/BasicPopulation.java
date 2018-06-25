@@ -3,6 +3,7 @@ package genetic.imp;
 import java.util.ArrayList;
 import java.util.List;
 import genetic.Chromosome;
+import genetic.ChromosomeMaker;
 import genetic.Nature;
 import genetic.Population;
 
@@ -41,6 +42,17 @@ public class BasicPopulation<T> implements Population<T> {
 		}
 		
 		return this.chromos;
+	}
+
+	@Override
+	public void addChromos(ChromosomeMaker<T> maker, int amount) {
+		List<Chromosome<T>> newChromos = new ArrayList<>(amount);
+		
+		while (amount-- > 0) {
+			newChromos.add(maker.make());
+		}
+		
+		this.chromos.addAll(newChromos);
 	}
 	
 

@@ -21,6 +21,8 @@ public interface Population<T> {
 	 */
 	void removeChromo(Chromosome<T> chromo);
 	
+	void addChromos(ChromosomeMaker<T> maker, int amount);
+	
 	/**
 	 * Do one generation.
 	 */
