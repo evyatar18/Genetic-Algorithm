@@ -24,7 +24,7 @@ public interface Population<T> {
 	/**
 	 * Do one generation.
 	 */
-	void doGeneration();
+	void doGeneration(Nature<T> nature);
 	
 	/**
 	 * Get the chromosomes inside this population.
