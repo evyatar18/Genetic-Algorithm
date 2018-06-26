@@ -10,15 +10,24 @@ import genetic.Nature;
 
 public class BasicNature<T> implements Nature<T> {
 
-	private static final float MATE_CHANCE = .7f;
-	private static final float MUTATE_CHANCE = .5f;
+	private static final float DEFAULT_MATE_CHANCE = .7f;
+	private static final float DEFAULT_MUTATE_CHANCE = .25f;
 	
 	private final ChooserFactory<Chromosome<T>> chooserMaker;
 	private final Random rand;
+	private final float mateChance;
+	private final float mutateChance;
 	
 	public BasicNature(ChooserFactory<Chromosome<T>> chromosomeChooser) {
+		this(chromosomeChooser, DEFAULT_MATE_CHANCE, DEFAULT_MUTATE_CHANCE);
+	}
+	
+	public BasicNature(ChooserFactory<Chromosome<T>> chromosomeChooser,
+				float mateChance, float mutateChance) {
 		this.chooserMaker = chromosomeChooser;
 		this.rand = new Random();
+		this.mateChance = mateChance;
+		this.mutateChance = mutateChance;
 	}
 	
 	@Override
@@ -28,7 +37,7 @@ public class BasicNature<T> implements Nature<T> {
 		while (nextGen.size() < currGen.size()) {
 			Chromosome<T> c = chooser.choose();
 			
-			if (this.rand.nextFloat() < MATE_CHANCE) {
+			if (this.rand.nextFloat() < this.mateChance) {
 				c = c.mate(chooser.choose());
 			}
 			
@@ -43,7 +52,7 @@ public class BasicNature<T> implements Nature<T> {
 		while (nextGen.size() < currGen.size()) {
 			Chromosome<T> c = chooser.choose();
 			
-			if (this.rand.nextFloat() < MUTATE_CHANCE) {
+			if (this.rand.nextFloat() < this.mutateChance) {
 				c = c.mutate();
 			}
 			

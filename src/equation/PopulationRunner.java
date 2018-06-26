@@ -2,6 +2,7 @@ package equation;
 
 import java.util.List;
 
+import comp.ChooserFactory;
 import comp.ProbabilityMaker;
 import genetic.Chromosome;
 import genetic.Nature;
@@ -19,7 +20,8 @@ public class PopulationRunner {
 		List<Chromosome<Equation>> sols;
 		int iter = 0;
 		
-		Nature<Equation> nature = new BasicNature<>(new ProbabilityMaker<Chromosome<Equation>>());
+		ChooserFactory<Chromosome<Equation>> cf = new ProbabilityMaker<>();
+		Nature<Equation> nature = new BasicNature<>(cf, 1f, 1f);
 		
 		while ((sols = p.solutions()).size() == 0) {
 			p.doGeneration(nature);
