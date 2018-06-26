@@ -1,19 +1,13 @@
 package genetic;
 
-import comp.Estimatable;
+import comp.Fitness;
 
-public interface Chromosome<Type> extends Comparable<Type>, Estimatable{
+public interface Chromosome<T> extends Fitness {
 
-	Type getData();
+	T getData();
+
+	Chromosome<T> mate(Chromosome<T> other);
+
+	Chromosome<T> mutate();
 	
-	Chromosome<Type> mate(Chromosome<Type> other);
-	
-	Chromosome<Type> mutate();
-	
-	double getFitness();
-	
-	
-	default double estimate() {
-		return getFitness();
-	}
 }

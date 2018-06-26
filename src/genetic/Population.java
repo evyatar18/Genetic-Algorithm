@@ -34,4 +34,10 @@ public interface Population<T> {
 	 * @return a list of chromosomes
 	 */
 	List<Chromosome<T>> getChromos(boolean ordered);
+
+	/**
+	 * Get a solution to the problem.
+	 * @return a solution chromosome or null if there's none
+	 */
+	Chromosome<T> solution();
 }

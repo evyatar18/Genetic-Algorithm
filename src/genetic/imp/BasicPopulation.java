@@ -1,7 +1,10 @@
 package genetic.imp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import comp.Fitness;
 import genetic.Chromosome;
 import genetic.ChromosomeMaker;
 import genetic.Nature;
@@ -27,12 +30,13 @@ public class BasicPopulation<T> implements Population<T> {
 	
 	@Override
 	public void doGeneration(Nature<T> nature) {
-		List<Chromosome<T>> l = new ArrayList<>(this.chromos.size());
+		List<Chromosome<T>> mate = new ArrayList<>(this.chromos.size());
+		List<Chromosome<T>> mutate = new ArrayList<>(this.chromos.size());
 		
-		nature.mate(this.chromos, l);
-		nature.mutate(this.chromos, l);
+		nature.mate(this.chromos, mate);
+		nature.mutate(mate, mutate);
 		
-		this.chromos = l;
+		this.chromos = mate;
 	}
 
 	@Override
@@ -53,6 +57,12 @@ public class BasicPopulation<T> implements Population<T> {
 		}
 		
 		this.chromos.addAll(newChromos);
+	}
+
+	@Override
+	public Chromosome<T> solution() {
+		Chromosome<T> max = Collections.max(this.chromos);
+		return max.fitness() == Fitness.FIT ? max : null;
 	}
 	
 
