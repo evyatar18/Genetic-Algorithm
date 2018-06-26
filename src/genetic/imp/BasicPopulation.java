@@ -1,8 +1,8 @@
 package genetic.imp;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import comp.Fitness;
 import genetic.Chromosome;
@@ -60,9 +60,11 @@ public class BasicPopulation<T> implements Population<T> {
 	}
 
 	@Override
-	public Chromosome<T> solution() {
-		Chromosome<T> max = Collections.max(this.chromos);
-		return max.fitness() == Fitness.FIT ? max : null;
+	public List<Chromosome<T>> solutions() {
+		// find all solutions
+		return this.chromos.stream()
+				.filter(x -> x.fitness() == Fitness.FIT)
+				.collect(Collectors.toList());
 	}
 	
 

@@ -11,7 +11,7 @@ import genetic.Nature;
 public class BasicNature<T> implements Nature<T> {
 
 	private static final float MATE_CHANCE = .7f;
-	private static final float MUTATE_CHANCE = .1f;
+	private static final float MUTATE_CHANCE = .5f;
 	
 	private final ChooserFactory<Chromosome<T>> chooserMaker;
 	private final Random rand;

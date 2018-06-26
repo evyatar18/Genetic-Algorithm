@@ -70,12 +70,11 @@ public class EquationChromosome implements Chromosome<Equation> {
 	
 	@Override
 	public double fitness() {
-		if (this.sum == Integer.MIN_VALUE) {
-			this.sum = this.eq.calc();
-		}
+		this.sum = this.eq.calc();
 		
-		if (this.sum == TARGET)
+		if (this.sum == TARGET) {
 			return FIT;
+		}
 		
 		return 1 /(float) (Math.abs(TARGET - this.sum));
 	}

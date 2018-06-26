@@ -28,10 +28,9 @@ public class Equation {
 	
 	public int calc() {
 		int sum = 0;
-		int a = 1;
 		
-		for (int i : this.ints) {
-			sum += a++ * i;
+		for (int i = 0; i < this.ints.size(); i++) {
+			sum += (i + 1) * this.ints.get(i);
 			
 		}
 		

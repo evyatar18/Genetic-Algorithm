@@ -59,7 +59,7 @@ public class ProbabilityChooser<T extends Fitness> implements Chooser<T> {
 			}
 		}
 		
-		return this.sols.get(this.sols.size() - 1);
+		return this.items.get(this.items.size() - 1);
 	}
 
 }

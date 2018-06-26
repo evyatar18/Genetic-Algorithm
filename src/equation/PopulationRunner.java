@@ -1,5 +1,7 @@
 package equation;
 
+import java.util.List;
+
 import comp.ProbabilityMaker;
 import genetic.Chromosome;
 import genetic.Nature;
@@ -12,21 +14,21 @@ public class PopulationRunner {
 	public static void main(String[] args) {
 		Population<Equation> p = new BasicPopulation<>();
 		
-		p.addChromos(new EquationChromoMaker(), 40);
+		p.addChromos(new EquationChromoMaker(), 120);
 		
-		Chromosome<Equation> sol;
+		List<Chromosome<Equation>> sols;
 		int iter = 0;
 		
-		while ((sol = p.solution()) == null) {
-			Nature<Equation> nature = new BasicNature<>(new ProbabilityMaker<Chromosome<Equation>>());
+		Nature<Equation> nature = new BasicNature<>(new ProbabilityMaker<Chromosome<Equation>>());
+		
+		while ((sols = p.solutions()).size() == 0) {
 			p.doGeneration(nature);
-			
-			System.out.println(p.getChromos(true));
-			
 			iter++;
 		}
 		
+		System.out.println(p.getChromos(true));
 		System.out.println("took " + iter + " iterations");
-		System.out.println("solution: " + sol.getData());
+		System.out.println("solution(s):");
+		sols.stream().map(x -> x.getData()).forEach(x -> System.out.println(x));
 	}
 }
