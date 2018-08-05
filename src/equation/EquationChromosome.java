@@ -9,7 +9,7 @@ public class EquationChromosome implements Chromosome<Equation> {
 	private static final Random RAND = new Random();
 
 	public static final int MAX_INT_POW = 5;
-	public static final int TARGET = 186;
+	public static final int TARGET = 170;
 
 	private final Equation eq;
 

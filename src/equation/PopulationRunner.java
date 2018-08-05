@@ -14,20 +14,20 @@ public class PopulationRunner {
 
 	public static void main(String[] args) {
 		Population<Equation> p = new BasicPopulation<>();
-		
-		p.addChromos(new EquationChromoMaker(), 120);
-		
+
+		p.addChromos(new EquationChromoMaker(), 1000);
+
 		List<Chromosome<Equation>> sols;
 		int iter = 0;
-		
+
 		ChooserFactory<Chromosome<Equation>> cf = new ProbabilityMaker<>();
-		Nature<Equation> nature = new BasicNature<>(cf, 1f, 1f);
-		
+		Nature<Equation> nature = new BasicNature<>(cf, 1f, 0.1f);
+
 		while ((sols = p.solutions()).size() == 0) {
 			p.doGeneration(nature);
 			iter++;
 		}
-		
+
 		System.out.println(p.getChromos(true));
 		System.out.println("took " + iter + " iterations");
 		System.out.println("solution(s):");
